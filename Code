@@ -1,0 +1,91 @@
+import java.util.Scanner;
+//Name: Vriti Dahiya 
+//Date: May 26, 2023 
+//Purpose: To write a program that simulates the task of shopping.  
+
+public class ShoppingSimulation {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Item Names and Prices (setting up in arrays)
+        String[] items = {
+            "PhoneCase",
+            "ChickenMcWrap",
+            "PotatoChips",
+            "ChocolateBar",
+            "SunGlasses",
+            "LapTopCase",
+            "WaterBottle",
+            "Headphones",
+            "BubbleGum",
+            "KeyChain"
+        };
+        double[] prices = {
+            24.99,
+            6.99,
+            1.99,
+            2.49,
+            19.99,
+            49.99,
+            8.49,
+            9.99,
+            0.99,
+            5.99
+        };
+
+        // Printing the inventory
+        System.out.println("Item\t\t\tPrice");
+        for (int index = 0; index < items.length; index++) {
+            System.out.println(items[index] + "\t\t$" + prices[index]);
+        }//for 
+        System.out.println();
+
+        System.out.print("Enter the number of different items you want to buy: ");
+        int itemCount = input.nextInt();
+
+        double subtotal = 0.0;
+
+        // Process each item
+        for (int index = 1; index <= itemCount; index++) {
+            System.out.print("Enter the name of item " + index + ": ");
+            String itemName = input.next();
+
+            int itemIndex = -1;
+            int rndm = 0;
+            while (itemIndex == -1 && rndm < items.length) {
+                if (items[rndm].equalsIgnoreCase(itemName)) {
+                    itemIndex = rndm;
+                }//if
+                rndm++;
+            }//while 
+
+            // Check if item is available or not 
+            if (itemIndex != -1) {
+                System.out.print("Enter the quantity of item " + index + ": ");
+                int quantity = input.nextInt();
+
+                double itemTotal = prices[itemIndex] * quantity;
+                System.out.println("Item " + itemName + ": $" + prices[itemIndex] + " x " + quantity + " = $" + itemTotal);
+                subtotal += itemTotal;
+            } //if 
+
+else {
+                System.out.println("Item " + itemName + " is not available in the inventory.");
+            }//else
+        } //for 
+
+        double tax = 0.1 * subtotal; // Assuming 10% tax
+        double grandTotal = subtotal + tax;
+
+        // Print final totals
+        System.out.println("Subtotal: $" + subtotal);
+        System.out.println("Tax: $" + tax);
+        System.out.println("Grand Total: $" + grandTotal);
+
+
+    }//main
+}//ShoppingSimulation
+
+
+
+
